@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	>
+	 
+<!-- 	<context:component-scan base-package="*"></context:component-scan> 	 -->
+
+ <context:component-scan base-package="it.com">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+ 			
+ 	<bean id="qd" class="it.com.dao.QuestDao" autowire="byType"></bean>
+	<bean id="qs" class="it.com.service.QuestService" autowire="byType"></bean>  
+ 	
+ 	
+	
+
+	<!-- sqlserver -->	
+	
+    	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="jdbc:sqlserver://10.10.10.197:50253;DatabaseName=zspt_data" />
+		<property name="username" value="sa" />
+		<property name="password" value="Tiandy1234" />
+		<property name="initialSize" value="1" />
+		<property name="minIdle" value="1" />
+		<property name="maxActive" value="150" />
+		<property name="maxWait" value="10000" />
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="false" />
+		<property name="poolPreparedStatements" value="true" />
+		<!-- <property name="maxPoolPreparedStatementPerConnectionSize" value="5000" /> -->
+		<property name="defaultAutoCommit" value="true" />
+    </bean> 
+    
+ <!-- mysql -->   
+  <!-- 
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/Spot_check" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+    </bean>
+    -->
+			
+	<!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:conf.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>  -->
+	
+</beans>
