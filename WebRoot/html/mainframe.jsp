@@ -40,7 +40,7 @@
 		</div>
 
 		<div class="layui-body">
-			<iframe src="/ZSPT/wtcx_01.do" frameborder="0" height="100%"
+			<iframe src="/ZSPT/html/wtcx.jsp" frameborder="0" height="100%"
 				width="100%" scrolling="auto" name="nr" class="nr" id="nr"></iframe>
 		</div>
 	</div>
